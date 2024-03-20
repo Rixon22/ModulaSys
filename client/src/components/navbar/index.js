@@ -1,5 +1,4 @@
 import { useState, forwardRef, useImperativeHandle } from 'react';
-import { Link } from 'react-router-dom';
 
 const Navbar = forwardRef((ref) => {
     
@@ -13,6 +12,6 @@ const Navbar = forwardRef((ref) => {
     );
   });
   
-  Navbar.displayName = 'Navbar';
+Navbar.displayName = 'Navbar';
   
 export default Navbar;

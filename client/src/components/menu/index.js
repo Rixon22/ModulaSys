@@ -1,19 +1,27 @@
-import { useState, forwardRef, useImperativeHandle } from 'react';
+import { data } from '../../modules';
 
-const Menu = forwardRef((ref) => {
-    
+const Menu = () => {
     return (
-        <div class="card" style= {{width: '18em'}}>
-        <img src="..." class="card-img-top" alt="..."></img>
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+        <div className="container">
+            <div className="row">
+                {data.map((item) => {
+                    return (
+                        <div key={item.id} className="col-md-4 mb-4">
+                            <div className="card">
+                                <img src={item.img} className="card-img-top" alt={item.name} />
+                                <div className="card-body">
+                                    <h5 className="card-title">{item.name}</h5>
+                                    {/* Agrega aquí cualquier otra información que quieras mostrar */}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
-  });
-  
-  Menu.displayName = 'Menu';
-  
+};
+
+Menu.displayName = 'Menu'; 
+
 export default Menu;
