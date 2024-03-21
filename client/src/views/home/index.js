@@ -1,6 +1,6 @@
-import Menu from '../../components/menu';
-import Navbar from '../../components/navbar/';
-import Welcome from '../../components/welcome/';
+import Menu from '../../components/menu/menu';
+import Navbar from '../../components/navbar/navbar';
+import Welcome from '../../components/welcome/welcome';
 
 const Home = () => {
     return (

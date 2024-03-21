@@ -1,11 +1,9 @@
-import { useState, forwardRef, useImperativeHandle } from 'react';
-
-const Welcome = forwardRef((ref) => {
+const Welcome = () => {
     
     return (
       <h1>Bienvenido</h1>
     );
-  });
+  };
   
   Welcome.displayName = 'Welcome';
   

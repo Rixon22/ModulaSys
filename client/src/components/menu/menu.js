@@ -11,7 +11,7 @@ const Menu = () => {
                                 <img src={item.img} className="card-img-top" alt={item.name} />
                                 <div className="card-body">
                                     <h5 className="card-title">{item.name}</h5>
-                                    {/* Agrega aquí cualquier otra información que quieras mostrar */}
+                                    <a href={item.path} className="btn btn-primary">Administrar</a>
                                 </div>
                             </div>
                         </div>

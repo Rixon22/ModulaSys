@@ -1,5 +1,4 @@
 import Routes from './routes';
-import Home from './views/home';
 import './App.css';
 
 function App() {
