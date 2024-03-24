@@ -1,7 +1,10 @@
-const Welcome = () => {
-    
+import './welcomeStyle.css';
+
+const Welcome = () => {  
     return (
-      <h1>Bienvenido</h1>
+      <div className = 'hola' >
+        <h1>Bienvenido</h1>
+      </div>
     );
   };
   
