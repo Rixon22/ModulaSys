@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
 const routes = require('./api/endpoints'); // Fix the file name to 'endpoints' with correct casing
 const cors = require('cors');
 
