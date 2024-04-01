@@ -12,7 +12,7 @@ const Log = () => {
             password: password
         };
         console.log(data)
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3001/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
