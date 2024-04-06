@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+// En react dom 6 es naviguete y no history 
+import { useNavigate } from 'react-router-dom';
 
 const Log = () => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [loginSuccessful, setLoginSuccessful] = useState(false);
+    const navigateTo = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -11,7 +14,7 @@ const Log = () => {
             username: username,
             password: password
         };
-        console.log(data)
+
         fetch('http://localhost:3001/login', {
             method: 'POST',
             headers: {
@@ -19,19 +22,21 @@ const Log = () => {
             },
             body: JSON.stringify(data)
         })
-            .then(response=> response.json())
+            .then(response => response.json())
             .then(result => {
-                console.log(result.token)
-                if(result.token){
-                    localStorage.setItem('token', result.token)
+                console.log(result.token);
+                if (result.token) {
+                    localStorage.setItem('token', result.token);
                     setLoginSuccessful(true);
+                    // Redirigir a la ruta /home
+                    navigateTo('/home');
                 } else {
                     setLoginSuccessful(false);
                 }
             })
-            .catch(error =>{
-                console.log(error)
-            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     return (
@@ -40,7 +45,7 @@ const Log = () => {
                 <div className="col-md-6">
                     <div className="card">
                         <div className="card-header text-center">
-                            <img src="../../assets/modulasyslogo-nobg.png" alt="Logo" style={{ maxWidth: '100px' }}/>
+                            <img src="../../assets/modulasyslogo-nobg.png" alt="Logo" style={{ maxWidth: '100px' }} />
                         </div>
                         <div className="card-body">
                             <form onSubmit={handleSubmit}>
