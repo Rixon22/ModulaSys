@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: ["http://localhost:5173"], // Aqui se debe cambiar el puerto 3000 por el puerto que se esté utilizando en el cliente
+    origin: ["http://localhost:5173"], // Aqui se debe cambiar el puerto 5173 vite 
     methods: ["GET", "POST"]
 }));
 
