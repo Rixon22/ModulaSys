@@ -10,7 +10,7 @@ const Log = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = {
+        const data = { 
             username: username,
             password: password
         };

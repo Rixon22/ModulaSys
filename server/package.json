@@ -15,7 +15,7 @@
     "fs": "^0.0.1-security",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.9.7",
+    "mysql": "^2.18.1",
     "npm": "^10.5.2",
     "prompt-sync": "^4.2.0"
   }
