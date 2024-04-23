@@ -1,43 +1,63 @@
-import prompt from 'prompt-sync';
-import { connection } from '../src/database/connection/connection.js';
-import fs from 'fs';
+const prompt = require('prompt-sync')();
+const mysql = require('mysql2/promise');
+const fs = require('fs');
+const path = require('path');
 
 const pt = prompt({ sigint: true });
 
+console.log('Bienvenido al inicializador de la base de datos!');
+
 const initDB = async (queries) => {
-  const xd = await connection.query(queries);
-  console.log(xd);
+  try {
+    const connectionInit = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: 'password',
+      port: 3305 // Cambia el puerto si es necesario
+    });
+    
+    const [result, fields] = await connectionInit.execute(queries);
+    console.log(result);
+    await connectionInit.end();
+  } catch (error) {
+    console.error('Error al inicializar la base de datos:', error);
+  }
 };
 
 const fillAll = async () => {
-    const query = fs
-      .readFileSync(process.cwd() + '/fill_db.sql')
-      .toString();
-    await connection.query(query);
-    console.log("task on 'user' done");
+  try {
+    const query = fs.readFileSync(path.join('init_db', 'fill_db.sql')).toString();
+    const connectionInit = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: 'password',
+      database: 'modulasys',
+      port: 3305 // Cambia el puerto si es necesario
+    });
+
+    await connectionInit.execute(query);
+    console.log("Tarea en 'user' completada");
+    await connectionInit.end();
+  } catch (error) {
+    console.error('Error al llenar la base de datos:', error);
+  }
 };
 
-try {
-    const queries = fs
-      .readFileSync(process.cwd() + '/init_db.sql')
-      .toString();
+(async () => {
+  try {
+    const queries = fs.readFileSync(path.join('init_db', 'init_db.sql')).toString();
     await initDB(queries);
-  
-    const opt = pt('llenar la BD de usuarios? (y/n)');
-    if (opt === 'y') await fillAll();
-  
-    console.log('DONE! use ctrl + c to get out from here');
+
+    await fillAll();
+
+    console.log('¡Listo! Usa Ctrl + C para salir.');
   } catch (e) {
-    console.log(e);
-  
-    if (e.errno === 1045) { //wut? access denied? 
-      console.log(
-        '!!!!!!!!!!!!!!!!####################!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n'
-      );
-      console.error('HEY!');
-      console.error('HEY! LISTEN!');
-      console.log(
-        'Recuerda alctualizar el archivo Variables de Entorno.js con tus credenciales de MySQL!!\n\n'
-      );
+    console.error('Error:', e);
+
+    if (e.code === 'ENOENT') {
+      console.error('Error: Archivo no encontrado:', e.path);
+    } else if (e.errno === 1045) {
+      console.error('Error de acceso a la base de datos: credenciales incorrectas.');
     }
-}
+  }
+})();
