@@ -1,8 +1,8 @@
+import TablaEmpleados from '../../components/tablaEmpleados/tablaEmpleados.jsx';
+
 const Employes = () => {
     return (
-        <div>
-        <h1>Employes</h1>
-        </div>
+        <TablaEmpleados />
     );
 }
 
