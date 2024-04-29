@@ -38,8 +38,11 @@ CREATE TABLE IF NOT EXISTS `modulasys`.`inventarios` (
   `idinventarios` INT NOT NULL AUTO_INCREMENT,
   `nombreProducto` VARCHAR(45) NOT NULL,
   `existenciaProducto` INT NOT NULL,
+  `urlFotoProducto` VARCHAR(45) NOT NULL,
+  `precioProducto` INT NOT NULL,
   PRIMARY KEY (`idinventarios`))
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -69,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `modulasys`.`ventas` (
   `cantidadVendida` INT NULL,
   `fecha` DATE NULL,
   PRIMARY KEY (`idVenta`),
-  INDEX `fk_inventarios_has_empleados_empleados1_idx` (`empleados_idempleado` ASC) VISIBLE,
-  INDEX `fk_inventarios_has_empleados_inventarios_idx` (`inventarios_idinventarios` ASC) VISIBLE,
+  INDEX `fk_inventarios_has_empleados_empleados1_idx` (`empleados_idempleado` ASC) ,
+  INDEX `fk_inventarios_has_empleados_inventarios_idx` (`inventarios_idinventarios` ASC),
   CONSTRAINT `fk_inventarios_has_empleados_inventarios`
     FOREIGN KEY (`inventarios_idinventarios`)
     REFERENCES `modulasys`.`inventarios` (`idinventarios`)

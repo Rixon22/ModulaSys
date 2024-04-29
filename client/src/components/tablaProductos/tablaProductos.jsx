@@ -29,7 +29,8 @@ const TablaProductos = () => {
 
     const filteredProductos = productos.filter(producto => {
         return (
-            producto.nombreProducto.toLowerCase().includes(searchTerm.toLowerCase())
+            producto.nombreProducto.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            producto.precioProducto.toString().includes(searchTerm.toLowerCase())
         );
     });
 
@@ -58,7 +59,7 @@ const TablaProductos = () => {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Buscar por nombre de producto"
+                                    placeholder="Buscar por nombre de producto o precio"
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
                             </div>
@@ -70,6 +71,8 @@ const TablaProductos = () => {
                                     <tr>
                                         <th>Nombre Producto</th>
                                         <th>Existencia</th>
+                                        <th>Precio</th>
+                                        <th>Foto</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -78,8 +81,10 @@ const TablaProductos = () => {
                                         <tr key={producto.idinventarios}>
                                             <td>{producto.nombreProducto}</td>
                                             <td>{producto.existenciaProducto}</td>
+                                            <td>${producto.precioProducto}</td>
+                                            <td><img src={producto.urlFotoProducto} alt={producto.nombreProducto} style={{ width: '50px' }} /></td>
                                             <td>
-                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }} onClick={() => handleEdit(producto.idinventarios)}>Editar</button>
+                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }}  onClick={() => handleEdit(producto.idinventarios)}>Editar</button>
                                                 <button className="btn btn-danger" onClick={() => handleDelete(producto.idinventarios)}>Eliminar</button>
                                             </td>
                                         </tr>
