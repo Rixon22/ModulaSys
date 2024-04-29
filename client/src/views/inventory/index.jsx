@@ -1,7 +1,11 @@
+import Navbar from "../../components/navbar/navbar";
+import TablaProductos from "../../components/tablaProductos/tablaProductos";
+
 const Inventory = () => {
     return (
         <div>
-        <h1>Inventory</h1>
+            <Navbar />
+            <TablaProductos />
         </div>
     );
 }

@@ -1,8 +1,12 @@
 import TablaEmpleados from '../../components/tablaEmpleados/tablaEmpleados.jsx';
+import Navbar from '../../components/navbar/navbar';
 
 const Employes = () => {
     return (
-        <TablaEmpleados />
+        <div>
+            <Navbar />
+            <TablaEmpleados />
+        </div>
     );
 }
 

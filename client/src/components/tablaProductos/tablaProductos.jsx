@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TablaEmpleados = () => {
-    const [empleados, setEmpleados] = useState([]);
+const TablaProductos = () => {
+    const [productos, setProductos] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const navigateTo = useNavigate();
 
@@ -12,7 +12,7 @@ const TablaEmpleados = () => {
             navigateTo('/');
         }
 
-        fetch('http://localhost:3001/employees', {
+        fetch('http://localhost:3001/products', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -20,17 +20,16 @@ const TablaEmpleados = () => {
         })
             .then(response => response.json())
             .then(data => {
-                setEmpleados(data);
+                setProductos(data);
             })
             .catch(error => {
                 console.error('Error:', error);
             });
     }, []);
 
-    const filteredEmpleados = empleados.filter(empleado => {
+    const filteredProductos = productos.filter(producto => {
         return (
-            empleado.nombreEmpleado.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            empleado.apellidEmpleado.toLowerCase().includes(searchTerm.toLowerCase())
+            producto.nombreProducto.toLowerCase().includes(searchTerm.toLowerCase())
         );
     });
 
@@ -42,8 +41,8 @@ const TablaEmpleados = () => {
         // Acción de eliminar, podrías mostrar un modal de confirmación
     };
 
-    const handleAddEmployee = () => {
-        // Redirigir a la página de agregar empleado
+    const handleAddProduct = () => {
+        // Redirigir a la página de agregar producto
     };
 
     return (
@@ -52,40 +51,36 @@ const TablaEmpleados = () => {
                 <div className="col-md-10">
                     <div className="card">
                         <div className="card-header text-center">
-                            <h4>Tabla de empleados</h4>
+                            <h4>Tabla de productos</h4>
                         </div>
                         <div className="card-body">
                             <div className="mb-3">
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Buscar por nombre o apellido"
+                                    placeholder="Buscar por nombre de producto"
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
                             </div>
                             <div className="mb-3">
-                                <button className="btn btn-success" onClick={handleAddEmployee}>Agregar Empleado</button>
+                                <button className="btn btn-success" onClick={handleAddProduct}>Agregar Producto</button>
                             </div>
                             <table className="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Dirección</th>
-                                        <th>Foto</th>
+                                        <th>Nombre Producto</th>
+                                        <th>Existencia</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredEmpleados.map(empleado => (
-                                        <tr key={empleado.idempleado}>
-                                            <td>{empleado.nombreEmpleado}</td>
-                                            <td>{empleado.apellidEmpleado}</td>
-                                            <td>{empleado.direaccionEmpleado}</td>
-                                            <td><img src={`http://localhost:3001/images/${empleado.urlFotoEmpleado}`} alt={empleado.nombreEmpleado} style={{ width: '50px' }} /></td>
+                                    {filteredProductos.map(producto => (
+                                        <tr key={producto.idinventarios}>
+                                            <td>{producto.nombreProducto}</td>
+                                            <td>{producto.existenciaProducto}</td>
                                             <td>
-                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }}onClick={() => handleEdit(empleado.idempleado)}>Editar</button>
-                                                <button className="btn btn-danger" onClick={() => handleDelete(empleado.idempleado)}>Eliminar</button>
+                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }} onClick={() => handleEdit(producto.idinventarios)}>Editar</button>
+                                                <button className="btn btn-danger" onClick={() => handleDelete(producto.idinventarios)}>Eliminar</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -99,4 +94,4 @@ const TablaEmpleados = () => {
     );
 }
 
-export default TablaEmpleados;
+export default TablaProductos;
