@@ -34,16 +34,44 @@ const TablaEmpleados = () => {
         );
     });
 
-    const handleEdit = (id) => {
-        // Acción de editar, podrías redirigir a una página de edición
-    };
+    const handleEdit = (empleado) => {
+        navigateTo('/editarEmpleado', { state: { empleado } });
+    };    
 
     const handleDelete = (id) => {
-        // Acción de eliminar, podrías mostrar un modal de confirmación
+        const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar este empleado?');
+    
+        if (confirmDelete) {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigateTo('/');
+            }
+    
+            fetch('http://localhost:3001/employees/delete', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Empleado eliminado exitosamente
+                    // Actualizar la lista de empleados
+                    setEmpleados(empleados.filter(empleado => empleado.idempleado !== id));
+                } else {
+                    throw new Error('Error al eliminar el empleado');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
     };
-
+    
     const handleAddEmployee = () => {
-        // Redirigir a la página de agregar empleado
+        navigateTo('/modificarEmpleado');
     };
 
     return (
@@ -84,7 +112,7 @@ const TablaEmpleados = () => {
                                             <td>{empleado.direaccionEmpleado}</td>
                                             <td><img src={`http://localhost:3001/images/${empleado.urlFotoEmpleado}`} alt={empleado.nombreEmpleado} style={{ width: '50px' }} /></td>
                                             <td>
-                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }}onClick={() => handleEdit(empleado.idempleado)}>Editar</button>
+                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }} onClick={() => handleEdit(empleado)}>Editar</button>
                                                 <button className="btn btn-danger" onClick={() => handleDelete(empleado.idempleado)}>Eliminar</button>
                                             </td>
                                         </tr>

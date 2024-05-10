@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 const TablaProductos = () => {
     const [productos, setProductos] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const navigateTo = useNavigate();
+    const navigate = useNavigate(); // Cambio aquí
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
-            navigateTo('/');
+            navigate('/');
         }
 
         fetch('http://localhost:3001/products', {
@@ -25,7 +25,7 @@ const TablaProductos = () => {
             .catch(error => {
                 console.error('Error:', error);
             });
-    }, []);
+    }, [navigate]);
 
     const filteredProductos = productos.filter(producto => {
         return (
@@ -34,8 +34,8 @@ const TablaProductos = () => {
         );
     });
 
-    const handleEdit = (id) => {
-        // Acción de editar, podrías redirigir a una página de edición
+    const handleEdit = (producto) => {
+        navigate('/editarProducto', { state: { producto} }); // Cambio aquí
     };
 
     const handleDelete = (id) => {
@@ -43,7 +43,7 @@ const TablaProductos = () => {
     };
 
     const handleAddProduct = () => {
-        // Redirigir a la página de agregar producto
+        navigate('/agregarProducto'); 
     };
 
     return (
@@ -84,7 +84,7 @@ const TablaProductos = () => {
                                             <td>${producto.precioProducto}</td>
                                             <td><img src={producto.urlFotoProducto} alt={producto.nombreProducto} style={{ width: '50px' }} /></td>
                                             <td>
-                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }}  onClick={() => handleEdit(producto.idinventarios)}>Editar</button>
+                                                <button className="btn btn-primary mr-2" style={{ margin: '5px' }}  onClick={() => handleEdit(producto)}>Editar</button>
                                                 <button className="btn btn-danger" onClick={() => handleDelete(producto.idinventarios)}>Eliminar</button>
                                             </td>
                                         </tr>

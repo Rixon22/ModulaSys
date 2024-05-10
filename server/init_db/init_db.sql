@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `modulasys`.`inventarios` (
   `nombreProducto` VARCHAR(45) NOT NULL,
   `existenciaProducto` INT NOT NULL,
   `urlFotoProducto` VARCHAR(45) NOT NULL,
-  `precioProducto` INT NOT NULL,
+  `precioProducto` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`idinventarios`))
 ENGINE = InnoDB;
 
