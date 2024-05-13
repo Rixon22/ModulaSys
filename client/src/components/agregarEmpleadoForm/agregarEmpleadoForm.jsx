@@ -27,7 +27,7 @@ const AgregarEmpleadoForm = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                alert('Empleado agregado correctamente');
                 navigateTo('/personal');
             })
             .catch(error => {

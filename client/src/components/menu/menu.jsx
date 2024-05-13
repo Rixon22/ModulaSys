@@ -6,7 +6,7 @@ const Menu = () => {
             <div className="row">
                 {data.map((item) => {
                     return (
-                        <div key={item.id} className="col-md-4 mb-4">
+                        <div key={item.id} className="col-md-4 col-sm-6 mb-4">
                             <div className="card">
                                 <img src={item.img} className="card-img-top" alt={item.name} />
                                 <div className="card-body">
@@ -22,6 +22,6 @@ const Menu = () => {
     );
 };
 
-Menu.displayName = 'Menu'; 
+Menu.displayName = 'Menu';
 
 export default Menu;

@@ -27,7 +27,7 @@ const AgregarProductoForm = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                alert('Producto agregado correctamente');
                 navigateTo('/inventarios');
             })
             .catch(error => {

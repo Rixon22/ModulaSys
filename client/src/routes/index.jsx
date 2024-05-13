@@ -9,6 +9,7 @@ import AgregarEmpleado from '../views/agregarEmpleado';
 import EditarEmpleado from '../views/editarEmpleado';
 import AgregarProducto from '../views/agregarProducto';
 import EditarProducto from '../views/editarProducto';
+import AgregarVenta from '../views/agregarVenta';
 
 const isLoggedIn = () => {
   // Verifica si el token está presente en el almacenamiento local
@@ -30,6 +31,7 @@ const MyRoutes = () => (
       <Route path="/editarEmpleado" element={isLoggedIn() ? <EditarEmpleado /> : <Navigate to="/" />} />
       <Route path="/agregarProducto" element={isLoggedIn() ? <AgregarProducto /> : <Navigate to="/" />} />
       <Route path="/editarProducto" element={isLoggedIn() ? <EditarProducto /> : <Navigate to="/" />} />
+      <Route path="/agregarVenta" element={isLoggedIn() ? <AgregarVenta /> : <Navigate to="/" />} />
     </Routes>
   </Router>
 );

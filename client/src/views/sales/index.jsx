@@ -1,7 +1,11 @@
+import Navbar from "../../components/navbar/navbar";
+import TablaVentas from "../../components/tablaVentas/tablaVentas";
+
 const Sales = () => {
     return (
         <div>
-        <h1>Sales</h1>
+            <Navbar />
+            <TablaVentas />
         </div>
     );
 }

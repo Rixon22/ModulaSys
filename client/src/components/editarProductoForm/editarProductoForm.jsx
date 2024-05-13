@@ -32,7 +32,7 @@ const EditarProductoForm = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                alert('Producto editado correctamente');
                 navigateTo('/inventarios');
             })
             .catch(error => {

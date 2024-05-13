@@ -32,7 +32,8 @@ const EditarEmpleadoForm = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                //Aviso de que se ha editado el empleado en el navegador
+                alert('Empleado editado correctamente');
                 navigateTo('/personal');
             })
             .catch(error => {

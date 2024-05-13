@@ -5,6 +5,7 @@ const { login } = require('../controllers/loginController')
 const { ping } = require('../controllers/pingController')
 const { getEmployees, addEmployee, editEmployee, deleteEmployee} = require('../controllers/employeesController')
 const { getProducts, addProduct, editProduct } = require('../controllers/productController')
+const { getSales, addSale } = require('../controllers/salesController')
 
 router.get('/ping', ping);
 router.post('/login', login);
@@ -19,5 +20,9 @@ router.post('/employees/delete', deleteEmployee);
 router.get('/products', getProducts);
 router.post('/products/add', addProduct);
 router.post('/products/edit', editProduct);
+
+// Sales
+router.get('/sales', getSales);
+router.post('/sales/add', addSale);
 
 module.exports = router;

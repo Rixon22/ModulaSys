@@ -6,9 +6,9 @@ INSERT INTO `modulasys`.`users` (`userdid`, `password`) VALUES
 
 -- Datos de prueba para la tabla `inventarios`
 INSERT INTO `modulasys`.`inventarios` (`nombreProducto`, `existenciaProducto`, `urlFotoProducto`, `precioProducto`) VALUES
-('iPhone 13', 10, 'url1', 1200),
-('Samsung Galaxy S22', 20, 'url2', 1100),
-('MacBook Pro', 15, 'url3', 2500);
+('iPhone 13', 10, 'url1', 1200.00),
+('Samsung Galaxy S22', 20, 'url2', 1100.60),
+('MacBook Pro', 15, 'url3', 2500.50);
 
 -- Datos de prueba para la tabla `empleados`
 INSERT INTO `modulasys`.`empleados` (`nombreEmpleado`, `apellidEmpleado`, `direaccionEmpleado`, `urlFotoEmpleado`) VALUES
