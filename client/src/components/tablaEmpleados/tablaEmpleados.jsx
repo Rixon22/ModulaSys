@@ -110,7 +110,7 @@ const TablaEmpleados = () => {
                                             <td>{empleado.nombreEmpleado}</td>
                                             <td>{empleado.apellidEmpleado}</td>
                                             <td>{empleado.direaccionEmpleado}</td>
-                                            <td><img src={`http://localhost:3001/images/${empleado.urlFotoEmpleado}`} alt={empleado.nombreEmpleado} style={{ width: '50px' }} /></td>
+                                            <td><img src={empleado.urlFotoEmpleado} alt={empleado.nombreEmpleado} style={{ width: '50px' }} /></td>
                                             <td>
                                                 <button className="btn btn-primary mr-2" style={{ margin: '5px' }} onClick={() => handleEdit(empleado)}>Editar</button>
                                                 <button className="btn btn-danger" onClick={() => handleDelete(empleado.idempleado)}>Eliminar</button>
